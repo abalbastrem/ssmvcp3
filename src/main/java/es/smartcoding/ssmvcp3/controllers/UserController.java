@@ -1,5 +1,6 @@
 package es.smartcoding.ssmvcp3.controllers;
 
+import java.net.URI;
 import java.util.Collection;
 import java.util.concurrent.Callable;
 
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
+import org.springframework.web.util.UriComponents;
 
 import es.smartcoding.ssmvcp3.model.entities.UserEntity;
 import es.smartcoding.ssmvcp3.model.services.UserService;
@@ -89,7 +92,7 @@ public class UserController {
 		return ResponseEntity.ok().body(user);
 	}
 
-}
+//}
 
 /*
  * 
@@ -105,14 +108,17 @@ public class UserController {
  * .eTag(user.getName()).body(user);
  */
 
-/// *
-// * Represents an immutable collection of URI components, mapping
-// * component type to string values. Contains convenience getters for all
-// * components. Effectively similar to URI, but with more powerful
-// * encoding options and support for URI template variables.
-// */
+/*
+ * Represents an immutable collection of URI components, mapping
+ * component type to string values. Contains convenience getters for all
+ * components. Effectively similar to URI, but with more powerful
+ * encoding options and support for URI template variables.
+ */
 // UriComponents uriComponents = MvcUriComponentsBuilder.fromMethodName(
 // UserController.class, "deleteUser", 1L).build();
 // URI uri = uriComponents.encode().toUri();
-//
+
 // logger.info("URI " + uri.toString());
+ 
+}
+ 

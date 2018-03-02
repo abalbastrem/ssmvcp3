@@ -9,11 +9,14 @@ import org.springframework.http.CacheControl;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
+import org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.thymeleaf.spring4.SpringTemplateEngine;
@@ -23,6 +26,7 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import es.smartcoding.ssmvcp3.RootPackage;
 import es.smartcoding.ssmvcp3.controllers.SimpleDemoController;
 import es.smartcoding.ssmvcp3.controllers.SimpleInterceptor;
+import es.smartcoding.ssmvcp3.controllers.SimpleInterceptor2;
 
 /**
  * Activa el soporte para el modelo de programación basado en clases
@@ -40,14 +44,14 @@ public class DispatcherServletConfig extends WebMvcConfigurerAdapter {
 	 * Interface que implementan las clases que resuelven nombres de vistas
 	 * lógicos a físicos
 	 */
-//	public @Bean ViewResolver viewResolver() {
-//		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-//		viewResolver.setViewClass(JstlView.class);
-//		viewResolver.setPrefix("/WEB-INF/views/");
-//		viewResolver.setSuffix(".jsp");
-//		viewResolver.setOrder(Integer.MAX_VALUE);
-//		return viewResolver;
-//	}
+	public @Bean ViewResolver viewResolver() {
+		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+		viewResolver.setViewClass(JstlView.class);
+		viewResolver.setPrefix("/WEB-INF/views/");
+		viewResolver.setSuffix(".jsp");
+		viewResolver.setOrder(Integer.MAX_VALUE);
+		return viewResolver;
+	}
 
 	/**
 	 * Configura rutas de contenido estático como CSS's, JavaScript, ...
@@ -70,7 +74,7 @@ public class DispatcherServletConfig extends WebMvcConfigurerAdapter {
 	 * se modifica el comportamiento por defecto: servir contenido estático.
 	 * 
 	 * Como este gestor se configura con la precedencia más baja, permite al
-	 * resto de los gestores de mapeo de peticiones actual primero y si ninguno
+	 * resto de los gestores de mapeo de peticiones actuar primero y si ninguno
 	 * lo hace, este gestor hará un forward al "default" Servlet.
 	 */
 	@Override
@@ -133,51 +137,57 @@ public class DispatcherServletConfig extends WebMvcConfigurerAdapter {
     	HandlerInterceptor handlerInterceptor = new SimpleInterceptor();
     	return handlerInterceptor;
     }
+    
+    @Bean
+    public HandlerInterceptor simpleInterceptor2() {
+    	HandlerInterceptor handlerInterceptor = new SimpleInterceptor2();
+    	return handlerInterceptor;
+    }
 
 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-///**
-//* HandlerMapping
-//* 
-//* Interfaz que implementan las clases que definen una correspondencia entre
-//* peticiones y métodos gestores (Handlers).
-//* 
-//* ControllerClassNameHandlerMapping es la implementación por defecto
-//* 
-//* Se trata de una implementación de HandlerMapping que sigue una convención simple
-//* a la hora de generar URL's de los nombres de las clases controladores registrados.
-//* 
-//*/
-//@Bean
-//public HandlerMapping controllerClassNameHandlerMapping() {
-//	ControllerClassNameHandlerMapping handlerMapping = new ControllerClassNameHandlerMapping();
-//	return handlerMapping;
 //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+* HandlerMapping
+* 
+* Interfaz que implementan las clases que definen una correspondencia entre
+* peticiones y métodos gestores (Handlers).
+* 
+* ControllerClassNameHandlerMapping es la implementación por defecto
+* 
+* Se trata de una implementación de HandlerMapping que sigue una convención simple
+* a la hora de generar URL's de los nombres de las clases controladores registrados.
+* 
+*/
+@Bean
+public HandlerMapping controllerClassNameHandlerMapping() {
+	ControllerClassNameHandlerMapping handlerMapping = new ControllerClassNameHandlerMapping();
+	return handlerMapping;
+}
 
 /**
  * Forma alternativa de configuración de un view resolver que traduce nombres de
  * vistas lógicos en nombres de vista físicos
  * 
  */
-// @Override
-// public void configureViewResolvers(ViewResolverRegistry registry) {
-// registry.jsp("/WEB-INF/views/", ".jsp");
-//
-// }
+ @Override
+ public void configureViewResolvers(ViewResolverRegistry registry) {
+ registry.jsp("/WEB-INF/views/", ".jsp");
+
+ }
 
 /*
  * InternalPathMethodNameResolver es la implementación por defecto de
@@ -193,3 +203,5 @@ public class DispatcherServletConfig extends WebMvcConfigurerAdapter {
  * E.g. "/foo/bar/baz.html" se corresponde con "baz"
  */
 // simpleDemoController.setMethodNameResolver(new InternalPathMethodNameResolver());
+ 
+}

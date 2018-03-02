@@ -8,8 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-public class SimpleInterceptor extends HandlerInterceptorAdapter {
-	
+public class SimpleInterceptor2 extends HandlerInterceptorAdapter {
+
 	private static final Logger logger = LoggerFactory.getLogger(SimpleInterceptor.class);
 	
 	/**
@@ -20,19 +20,19 @@ public class SimpleInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		logger.info("en preHandle");
+		logger.info("en preHandle del Interceptor 2");
 		return true;
 	}
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 		super.postHandle(request, response, handler, modelAndView);
-		logger.info("en postHandle");
+		logger.info("en postHandle del Interceptor 2");
 	}
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-		logger.info("en afterCompletion");
+		logger.info("en afterCompletion del Interceptor 2");
 		super.afterCompletion(request, response, handler, ex);
 	}
 
