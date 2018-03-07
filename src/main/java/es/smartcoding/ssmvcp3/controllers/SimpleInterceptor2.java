@@ -7,9 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-public class SimpleInterceptor extends HandlerInterceptorAdapter {
+public class SimpleInterceptor2 extends HandlerInterceptorAdapter {
 	
-	private static final Logger logger = LoggerFactory.getLogger(SimpleInterceptor.class);
+	private static final Logger logger = LoggerFactory.getLogger(SimpleInterceptor2.class);
 	
 	/**
 	 * Retorna true si la aplicación debe continuar su curso normal
@@ -19,7 +19,7 @@ public class SimpleInterceptor extends HandlerInterceptorAdapter {
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		logger.info("en preHandle del Interceptor2");
+		logger.info("en preHandle");
 		return true;
 	}
 

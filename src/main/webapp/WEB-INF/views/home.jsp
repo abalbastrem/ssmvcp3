@@ -22,6 +22,8 @@
 			code="home.label.english" /></a> |
 	<a href="/ssmvcp3?language=es"><spring:message
 			code="home.label.spanish" /></a>
+	<a href="/ssmvcp3?language=fr"><spring:message
+			code="home.labelfrench" /></a>
 
 	<P>
 		<spring:message code="home.label.time" />

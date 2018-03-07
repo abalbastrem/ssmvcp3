@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import es.smartcoding.ssmvcp3.model.entities.ComputerEntity;
 import es.smartcoding.ssmvcp3.model.entities.UserEntity;
 import es.smartcoding.ssmvcp3.model.services.UserService;
 
@@ -88,6 +89,34 @@ public class UserController {
 		UserEntity user = userService.findOne(id);
 		return ResponseEntity.ok().body(user);
 	}
+
+//}
+
+/*** NUEVOS MÉTODOS ***/
+
+@RequestMapping("/modify/{id}")
+public Callable<String> modifyUser(@PathVariable long id) {
+	logger.info("Entrando en UserController -> modify/id");
+	Callable<String> callable = () -> {
+		userService.longTimeService();
+		return "home";
+	};
+	logger.info("Saliendo de UserController -> modify/id");
+	return callable;
+
+}
+
+
+@RequestMapping("/users/{id}")
+public ResponseEntity<UserEntity> findUser(@PathVariable(value = "nm") String nm,
+		@MatrixVariable(name = "q", pathVar = "nm", required = false, defaultValue = "ZZZnonameZZZ") String q) {
+
+	logger.info("Matrix Value " + q);
+
+	UserEntity user = userService.findByName(nm);
+	return ResponseEntity.ok().body(user);
+}
+
 
 }
 

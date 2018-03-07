@@ -48,5 +48,18 @@ public class SimpleDemoController extends MultiActionController {
 			HttpServletResponse response) throws Exception {
 		return "action2";
 	}
+	
+	/**
+	 * Nuevo método
+	 * 
+	 * @param request
+	 * @param response
+	 * @return ModelAndView
+	 * @throws Exception
+	 */
+	public ModelAndView action3(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		return new ModelAndView("action3", "msg", "Nueva vista 3");
+	}
 
 }
