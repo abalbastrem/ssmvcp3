@@ -23,6 +23,7 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import es.smartcoding.ssmvcp3.RootPackage;
 import es.smartcoding.ssmvcp3.controllers.SimpleDemoController;
 import es.smartcoding.ssmvcp3.controllers.SimpleInterceptor;
+import es.smartcoding.ssmvcp3.controllers.SimpleInterceptor2;
 
 /**
  * Activa el soporte para el modelo de programación basado en clases
@@ -131,6 +132,12 @@ public class DispatcherServletConfig extends WebMvcConfigurerAdapter {
     @Bean
     public HandlerInterceptor simpleInterceptor() {
     	HandlerInterceptor handlerInterceptor = new SimpleInterceptor();
+    	return handlerInterceptor;
+    }
+    
+    @Bean
+    public HandlerInterceptor simpleInterceptor2() {
+    	HandlerInterceptor handlerInterceptor = new SimpleInterceptor2();
     	return handlerInterceptor;
     }
 

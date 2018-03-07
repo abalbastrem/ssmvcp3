@@ -23,6 +23,9 @@ public class CustomWebMvcConfigurationSupport extends
 	
 	@Autowired
 	private HandlerInterceptor simpleInterceptor;
+	
+	@Autowired
+	private HandlerInterceptor simpleInterceptor2;
 
 	@Override
 	@Bean
@@ -49,7 +52,7 @@ public class CustomWebMvcConfigurationSupport extends
 		 * Intercepta cambios de Locale
 		 */
 		handlerMapping
-				.setInterceptors(new Object[] { localeChangeInterceptor, simpleInterceptor });
+				.setInterceptors(new Object[] { localeChangeInterceptor, simpleInterceptor, simpleInterceptor2 });
 
 		return handlerMapping;
 	}

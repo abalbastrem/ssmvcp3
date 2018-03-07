@@ -19,7 +19,7 @@ public class SimpleInterceptor extends HandlerInterceptorAdapter {
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		logger.info("en preHandle del Interceptor2");
+		logger.info("en preHandle");
 		return true;
 	}
 
