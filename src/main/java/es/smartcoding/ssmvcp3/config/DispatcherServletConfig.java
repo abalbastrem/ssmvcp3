@@ -102,31 +102,31 @@ public class DispatcherServletConfig extends WebMvcConfigurerAdapter {
 		return simpleDemoController;
 	}
 	
-	//start Thymeleaf specific configuration
-    @Bean(name ="templateResolver")	
-    public ServletContextTemplateResolver getTemplateResolver() {
-    	ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver();
-    	templateResolver.setPrefix("/WEB-INF/thymeleaf/");
-    	templateResolver.setSuffix(".html");
-	// XML, VALIDXML, XHTML, VALIDXHTML, HTML5 and LEGACYHTML5
-    	templateResolver.setTemplateMode("HTML5");
-	return templateResolver;
-    }
-
-    @Bean(name ="templateEngine")	    
-    public SpringTemplateEngine getTemplateEngine() {
-    	SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-    	templateEngine.setTemplateResolver(getTemplateResolver());
-	return templateEngine;
-    }
-
-    @Bean(name="viewResolver")
-    public ThymeleafViewResolver getViewResolver(){
-    	ThymeleafViewResolver viewResolver = new ThymeleafViewResolver(); 
-    	viewResolver.setTemplateEngine(getTemplateEngine());
-    	viewResolver.setOrder(1);
-	return viewResolver;
-    }
+//	//start Thymeleaf specific configuration
+//    @Bean(name ="templateResolver")	
+//    public ServletContextTemplateResolver getTemplateResolver() {
+//    	ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver();
+//    	templateResolver.setPrefix("/WEB-INF/thymeleaf/");
+//    	templateResolver.setSuffix(".html");
+//	// XML, VALIDXML, XHTML, VALIDXHTML, HTML5 and LEGACYHTML5
+//    	templateResolver.setTemplateMode("HTML5");
+//	return templateResolver;
+//    }
+//
+//    @Bean(name ="templateEngine")	    
+//    public SpringTemplateEngine getTemplateEngine() {
+//    	SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+//    	templateEngine.setTemplateResolver(getTemplateResolver());
+//	return templateEngine;
+//    }
+//
+//    @Bean(name="viewResolver")
+//    public ThymeleafViewResolver getViewResolver(){
+//    	ThymeleafViewResolver viewResolver = new ThymeleafViewResolver(); 
+//    	viewResolver.setTemplateEngine(getTemplateEngine());
+//    	viewResolver.setOrder(1);
+//	return viewResolver;
+//    }
     //end Thymeleaf specific configuration
     
     @Bean
